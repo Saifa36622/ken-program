@@ -7,12 +7,12 @@ namespace wowzaa
         static void Main(string[] args)
         {
             Console.WriteLine("Enter your passcode : ");
-            int pass = Convert.ToInt32(Console.ReadLine());
+            string pass = Console.ReadLine();
 
             Console.WriteLine("Enter your agency : ");
-             string agent  = Console.ReadLine();
+            string agent = Console.ReadLine();
 
-            if (pass.ToString().Length != 6)
+            if (pass.Length != 6)
             {
                 Console.WriteLine("Error: Passcode must have 6 digits.");
             }
@@ -22,17 +22,30 @@ namespace wowzaa
             }
             else if (agent == "FBI")
             {
-                if (pass.ToString()[0] >= '4' && pass.ToString()[0] <= '7' &&
-                    pass.ToString()[1] % 2 != 0 && pass.ToString()[3] != 6 && pass.ToString()[3] % 2 == 0)
+                if (pass[0] >= '4' && pass[0] <= '7' &&
+                    pass[1] % 2 != 0 && pass[3] != '6' && pass[3] % 2 == 0)
                 {
                     Console.WriteLine("Pass is valid.");
                 }
-                else 
+                    else
+                    {
+                        Console.WriteLine("Error: Passcode is not valid for this agency.");
+                    }
+                else if (agent == "CIA")
                 {
-                    Console.WriteLine("wow");
+                    if (pass[5] % 3 == 0 && pass [4] != '1' && pass [4] != '3' && pass [4] != '5' && pass[2] >= 6 && pass[2] != '8')
+                    {
+                        Console.WriteLine("Pass is valid.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: Passcode is not valid for this agency.");
+                    }
                 }
-                
+
             }
+
+            Console.ReadLine();
         }
     }
 }
